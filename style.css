@@ -1,0 +1,94 @@
+/* Загальні стилі для безвідступного вигляду */
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    width: 100%;
+    font-family: Arial, sans-serif;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Контейнер для вмісту, щоб все було по центру */
+.container {
+    display: flex;
+    justify-content: center;  /* Центруємо по горизонталі */
+    align-items: center;  /* Центруємо по вертикалі */
+    height: 100%;
+    width: 100%;
+    background-color: #f0f0f0;
+    flex-direction: column;
+}
+
+/* Секція авторизації з більшими розмірами */
+.auth-section {
+    width: 100%;
+    max-width: 600px;  /* Збільшена ширина */
+    padding: 50px;  /* Збільшено відступи */
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Збільшений заголовок */
+.auth-section h2 {
+    font-size: 36px;  /* Збільшено розмір шрифту */
+    margin-bottom: 30px;  /* Збільшено відступ */
+}
+
+/* Збільшені поля вводу */
+.auth-section input {
+    margin: 15px 0;  /* Збільшено відступи */
+    padding: 18px;  /* Збільшено padding */
+    width: 90%;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 20px;  /* Збільшено розмір шрифту */
+}
+
+/* Збільшені кнопки */
+.auth-section button {
+    padding: 18px 35px;  /* Збільшено padding */
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 20px;  /* Збільшено розмір шрифту */
+    width: 100%;
+    margin-bottom: 15px;  /* Збільшено відступ */
+}
+
+/* Зробимо кнопки активними при наведенні */
+.auth-section button:hover {
+    background-color: #0056b3;
+}
+
+/* Вкладки для Log In та Sign Up */
+.tab {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 20px;
+}
+
+.tab button {
+    padding: 10px 20px;
+    font-size: 18px;
+    background-color: #f0f0f0;
+    border: none;
+    cursor: pointer;
+    width: 50%;
+    border-radius: 5px 5px 0 0;
+}
+
+.tab button.active {
+    background-color: #007BFF;
+    color: white;
+}

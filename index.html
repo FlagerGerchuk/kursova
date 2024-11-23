@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Авторизація</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Форма авторизації -->
+        <div class="auth-section">
+            <div class="tab">
+                <button class="active" id="login-tab">Log In</button>
+                <button id="signup-tab">Sign Up</button>
+            </div>
+
+            <!-- Форма Log In -->
+            <div id="login-form">
+                <h2>Log In</h2>
+                <input type="email" id="login-email" placeholder="Введіть email" required>
+                <input type="password" id="login-password" placeholder="Введіть пароль" required>
+                <button id="login-btn">Увійти</button>
+            </div>
+
+            <!-- Форма Sign Up -->
+            <div id="signup-form" style="display: none;">
+                <h2>Sign Up</h2>
+                <input type="email" id="signup-email" placeholder="Введіть email" required>
+                <input type="password" id="signup-password" placeholder="Введіть пароль" required>
+                <button id="signup-btn">Зареєструватися</button>
+            </div>
+        </div>
+        <!-- Привітання після входу -->
+        <div id="welcome-section" style="display: none;">
+            <h2>Вітаємо!</h2>
+            <p id="welcome-message"></p>
+            <button id="logout-btn">Вийти</button>
+        </div>
+    </div>
+
+    <script src="main.js"></script>
+</body>
+</html>
