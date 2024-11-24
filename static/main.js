@@ -1,6 +1,6 @@
 document.getElementById('search-btn').addEventListener('click', function(e) {
     e.preventDefault();
-    const query = document.getElementById('search-input').value;
+    const query = document.getElementById('search-input').value.trim();
     fetch(`/search_query?query=${encodeURIComponent(query)}`)
         .then(response => response.json())
         .then(data => {
@@ -9,7 +9,10 @@ document.getElementById('search-btn').addEventListener('click', function(e) {
             if (data.results.length > 0) {
                 data.results.forEach(game => {
                     const gameDiv = document.createElement('div');
-                    gameDiv.innerHTML = `<strong>${game.name}</strong><br>${game.description}<br><em>Genre:</em> ${game.genre} | <em>Platform:</em> ${game.platform}`;
+                    gameDiv.innerHTML = `
+                        <h3>${game.name}</h3>
+                        <p><strong>Description:</strong> ${game.description}</p>
+                    `;
                     resultsDiv.appendChild(gameDiv);
                 });
             } else {
