@@ -1,0 +1,68 @@
+[
+    {
+        "name": "Minecraft",
+        "description": "A sandbox game about placing blocks and going on adventures.",
+        "genre": "Sandbox",
+        "platform": "PC, PS4, Xbox, Mobile"
+    },
+    {
+        "name": "The Witcher 3",
+        "description": "An open-world RPG about a monster hunter.",
+        "genre": "RPG",
+        "platform": "PC, PS4, Xbox"
+    },
+    {
+        "name": "Cyberpunk 2077",
+        "description": "A futuristic action-adventure RPG.",
+        "genre": "RPG",
+        "platform": "PC, PS5, Xbox"
+    },
+    {
+        "name": "Fortnite",
+        "description": "A battle royale game with building mechanics.",
+        "genre": "Battle Royale",
+        "platform": "PC, PS4, Xbox, Mobile"
+    },
+    {
+        "name": "Among Us",
+        "description": "A multiplayer social deduction game.",
+        "genre": "Party",
+        "platform": "PC, Mobile, Switch"
+    },
+    {
+        "name": "Stardew Valley",
+        "description": "A farming simulation game with RPG elements.",
+        "genre": "Simulation",
+        "platform": "PC, PS4, Xbox, Mobile"
+    },
+    {
+        "name": "Elden Ring",
+        "description": "A dark fantasy action RPG by FromSoftware.",
+        "genre": "RPG",
+        "platform": "PC, PS5, Xbox"
+    },
+    {
+        "name": "Call of Duty: Modern Warfare II",
+        "description": "A first-person shooter game with single and multiplayer modes.",
+        "genre": "Shooter",
+        "platform": "PC, PS5, Xbox"
+    },
+    {
+        "name": "Grand Theft Auto V",
+        "description": "An open-world action game with a rich story and multiplayer mode.",
+        "genre": "Action",
+        "platform": "PC, PS4, PS5, Xbox"
+    },
+    {
+        "name": "Red Dead Redemption 2",
+        "description": "A Western-themed action-adventure game.",
+        "genre": "Action-Adventure",
+        "platform": "PC, PS4, Xbox"
+    },
+    {
+        "name": "The Legend of Zelda: Breath of the Wild",
+        "description": "An open-world action-adventure game in the Zelda universe.",
+        "genre": "Action-Adventure",
+        "platform": "Nintendo Switch"
+    }
+]
