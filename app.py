@@ -1,5 +1,6 @@
 from flask import Flask, render_template, request, redirect, url_for, session
 import json
+import os
 
 app = Flask(__name__)
 app.secret_key = 'your_secret_key'
@@ -58,7 +59,8 @@ def search_query():
     query = request.args.get('query', '').lower()
     
     # Завантажуємо ігри з JSON-файлу
-    with open('static/games.json', 'r') as file:
+    games_file_path = os.path.join('static', 'games.json')
+    with open(games_file_path, 'r') as file:
         games = json.load(file)
 
     # Фільтруємо ігри за пошуковим запитом
@@ -67,4 +69,6 @@ def search_query():
     return {"results": results}
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    # Налаштування для Heroku
+    port = int(os.environ.get("PORT", 5000))
+    app.run(debug=False, host='0.0.0.0', port=port)
