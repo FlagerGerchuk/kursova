@@ -1,14 +1,25 @@
 from flask import Flask, render_template, request, redirect, url_for, session
-import json
-import os
+import sqlite3
+from werkzeug.security import generate_password_hash, check_password_hash
 
 app = Flask(__name__)
 app.secret_key = 'your_secret_key'
 
-# Імітація бази даних для користувачів
-users = {
-    "user@example.com": "password123"
-}
+# Ініціалізація бази даних
+def init_db():
+    conn = sqlite3.connect('users.db')
+    cursor = conn.cursor()
+    cursor.execute('''
+        CREATE TABLE IF NOT EXISTS users (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            email TEXT UNIQUE NOT NULL,
+            password TEXT NOT NULL
+        )
+    ''')
+    conn.commit()
+    conn.close()
+
+init_db()
 
 @app.route('/')
 def home():
@@ -19,10 +30,19 @@ def login():
     if request.method == 'POST':
         email = request.form.get('email')
         password = request.form.get('password')
-        if email in users and users[email] == password:
+
+        # Пошук користувача в базі даних
+        conn = sqlite3.connect('users.db')
+        cursor = conn.cursor()
+        cursor.execute('SELECT * FROM users WHERE email = ?', (email,))
+        user = cursor.fetchone()
+        conn.close()
+
+        if user and check_password_hash(user[2], password):
             session['user_email'] = email
             return redirect(url_for('search'))
-        return render_template('login.html', error="Invalid email or password.")
+        else:
+            return render_template('login.html', error="Invalid email or password.")
     return render_template('login.html')
 
 @app.route('/register', methods=['GET', 'POST'])
@@ -34,12 +54,19 @@ def register():
 
         if password != confirm_password:
             return render_template('register.html', error="Passwords do not match.")
-        
-        if email in users:
+
+        hashed_password = generate_password_hash(password)
+
+        try:
+            # Додавання нового користувача до бази даних
+            conn = sqlite3.connect('users.db')
+            cursor = conn.cursor()
+            cursor.execute('INSERT INTO users (email, password) VALUES (?, ?)', (email, hashed_password))
+            conn.commit()
+            conn.close()
+            return render_template('login.html', success="Account successfully created! Please log in.")
+        except sqlite3.IntegrityError:
             return render_template('register.html', error="User already exists.")
-        
-        users[email] = password
-        return render_template('login.html', success="Account successfully created! Please log in.")
     
     return render_template('register.html')
 
@@ -58,17 +85,14 @@ def search():
 def search_query():
     query = request.args.get('query', '').lower()
     
-    # Завантажуємо ігри з JSON-файлу
-    games_file_path = os.path.join('static', 'games.json')
-    with open(games_file_path, 'r') as file:
+    # Завантаження ігор із JSON-файлу
+    with open('static/games.json', 'r') as file:
         games = json.load(file)
 
-    # Фільтруємо ігри за пошуковим запитом
+    # Фільтрація ігор за пошуковим запитом
     results = [game for game in games if query in game['name'].lower()]
     
     return {"results": results}
 
 if __name__ == '__main__':
-    # Налаштування для Heroku
-    port = int(os.environ.get("PORT", 5000))
-    app.run(debug=False, host='0.0.0.0', port=port)
+    app.run(debug=True)
